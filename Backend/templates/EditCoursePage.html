@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editcourse</title>
+</head>
+<body>
+<h1 style="text-align:center;">Edit Course Details</h1>
+
+<div class="card-body">
+    <form method="post" action="{% url 'updatecourse' id=data.Course_id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Course Name</label>
+            <input id="inputText3" type="text" class="form-control" name="name" value="{{data.Course}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Industry</label>
+            <select class="form-control" name="category">
+                <option>select industry</option>
+                {% for i in cour %}
+                <option>{{i.Category}}</option>
+                {% endfor %}
+            </select>
+<!--            <input id="inputText6" type="text" class="form-control" name="industry" value="{{data.Category}}">-->
+        </div>
+
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Institution</label>
+            <input id="inputText2" type="text" class="form-control" name="institution" value="{{data.Institution}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText4" class="col-form-label">Contact</label>
+            <input id="inputText1" type="number" class="form-control" name="contact" value="{{data.Contact}}">
+        </div>
+
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Duration</label>
+            <input id="inputText5" type="text" class="form-control" name="duration" value="{{data.Duration}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText4" class="col-form-label">Fees</label>
+            <input id="inputText4" type="number" class="form-control" placeholder="Numbers" name="fee" value="{{data.Fees}}">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="{{data.Description}}">{{data.Description}}</textarea>
+        </div>
+      <div>
+        <button type="submit">SUBMIT</button>
+      </div>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DisplayJobApplications</title>
+</head>
+<body>
+
+
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-6">
+                            <div class="card">
+                                <h5 class="card-header">JOB APPLICATIONS</h5>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Applicant</th>
+                                                <th scope="col">Job Name</th>
+                                                <th scope="col">Company</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Salary</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Employment status</th>
+                                                <th scope="col">Delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in jobapps %}
+                                            <tr>
+                                                <td><a href="{% url 'applicantprofile' name=i.Name %}">{{i.Name}}</a></td>
+                                                <td>{{i.Job_Name}}</td>
+                                                <td>{{i.Company}}</td>
+                                                <td>{{i.Location}}</td>
+                                                <td>{{i.Salary}}</td>
+                                                <td>{{i.Description}}</td>
+                                                <td>{{i.Employment_status}}</td>
+                                                <td>
+                                                    <a href="{% url 'deleteapplication' id=i.Aplctn_id %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                        </svg>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

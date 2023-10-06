@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display job category</title>
+</head>
+<body>
+
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-6">
+                            <div class="card">
+                                <h5 class="card-header">USER REVIEWS</h5>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">USER</th>
+                                                <th scope="col">EMAIL</th>
+                                                <th scope="col">SUBJECT</th>
+                                                <th scope="col">MESSAGE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in msgs %}
+                                            <tr>
+                                                <td>{{i.Name}}</td>
+                                                <td>{{i.Email}}</td>
+                                                <td>{{i.subject}}</td>
+                                                <td>{{i.Message}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+</body>
+</html>
+{% endblock %}

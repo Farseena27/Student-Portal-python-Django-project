@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit job</title>
+</head>
+<body>
+<h1>Edit job</h1>
+<div class="card-body">
+    <form method="post" action="{% url 'updatejob' id=data.Job_id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Job Role</label>
+            <input id="inputText1" type="text" class="form-control" name="name" value="{{data.Job_Name}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Industry</label>
+            <select name="indus" class="form-control">
+                <option>Select Industry</option>
+                {% for i in ind %}
+                <option>{{i.Industry}}</option>
+                {% endfor %}
+            </select>
+<!--            <input id="inputText" type="text" class="form-control" name="name" value="{{data.Name}}">-->
+        </div>
+
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Company</label>
+            <input id="inputText3" type="text" class="form-control" name="company" value="{{data.Company}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Openings</label>
+            <input id="inputText2" type="text" class="form-control" name="openings" value="{{data.Openings}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Experiance</label>
+            <input id="inputText5" type="text" class="form-control" name="experiance" value="{{data.Experiance}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText4" class="col-form-label">Location</label>
+            <input id="inputText4" type="text" class="form-control"  name="location" value="{{data.Location}}">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" value="{{data.Description}}">{{data.Description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Salary</label>
+            <input id="inputText6" type="text" class="form-control" name="salary" value="{{data.Salary}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Employment Status</label>
+            <input id="inputText7" type="text" class="form-control" name="empstatus" value="{{data.Employment_status}}">
+        </div>
+
+      <div>
+        <button type="submit">SUBMIT</button>
+      </div>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

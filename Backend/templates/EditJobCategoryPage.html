@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Category</title>
+</head>
+<body>
+
+<div class="card-body">
+    <form method="post" action="{% url 'updatejobcategory' id=inddata.category_id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Industry</label>
+            <input id="inputText1" type="text" class="form-control" name="industry" value="{{inddata.Industry}}">
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Description</label>
+            <input id="inputText3" type="text" class="form-control" name="description"  value="{{inddata.Description}}">
+        </div>
+        <div>
+            <button TYPE="submit">UPDATE</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'Index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-6">
+                            <div class="card">
+                                <h5 class="card-header">JOB APPLICATIONS</h5>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Applicant</th>
+                                                <th scope="col">Mobile</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Qualification</th>
+                                                <th scope="col">Resume</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in p %}
+                                            <tr>
+                                                <td>{{i.Name}}</td>
+                                                <td>{{i.Mobile}}</td>
+                                                <td>{{i.Email}}</td>
+                                                <td>{{i.Location}}</td>
+                                                <td>{{i.Qualification}}</td>
+                                                <td>
+                                                    {{i.Resume}}
+                                                    <img src="{{i.Resume.url}}">
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+</body>
+</html>
+{% endblock %}
